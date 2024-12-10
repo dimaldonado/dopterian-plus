@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dopterian-plus"
+version = "0.1.0"
+description = "Python package for simulating observations of high-redshift galaxies, including K-corrections and additional tools for improved astronomical analyses."
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "Diego Alexander Maldonado Muñoz", email = "dimaldonado2019@udec.cl"},
+    {name = "Pierluigi Cerulo", email = "pcerulo@inf.udec.cl"},
+    {name = "Ana Paulino-Afonso"}
+]
+dependencies = [
+    "numpy",
+    "scipy",
+    "astropy",
+    "matplotlib",
+    "statsmodels",
+    "kcorrect"
+]
+keywords = ["astronomy", "redshift", "galaxies", "simulation", "k-correction"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "License :: OSI Approved :: MIT License",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Astronomy"
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+dopterian = ["data/*.fits"]
