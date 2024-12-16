@@ -1,0 +1,288 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Usage examples &mdash; Dopterian+ 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=01f34227"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="dopterian Submodule" href="dopterian.html" />
+    <link rel="prev" title="About Dopterian+" href="about.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Dopterian+
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="about.html">About Dopterian+</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Usage examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#input-filter-requirement">Input filter requirement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#simulation-example">Simulation example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#efficient-use-of-the-kcorrect-object">Efficient use of the kcorrect object</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dopterian.html">dopterian Submodule</a></li>
+<li class="toctree-l1"><a class="reference internal" href="calc_FWHM.html">calc_FWHM Submodule</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cut_postage_stamp.html">cut_postage_stamp submodule</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Dopterian+</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Usage examples</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/dimaldonado/dopterian-plus/blob/mainusage_examples.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="usage-examples">
+<h1>Usage examples<a class="headerlink" href="#usage-examples" title="Link to this heading"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<p>The Dopterian-Plus package includes example FITS files of a galaxy from the Abell 209 cluster, observed with the Hubble Space Telescope. These files allow users to test the functionalities of the package without requiring additional data preparation.</p>
+<p>The package provides images taken in five photometric filters:</p>
+<ul class="simple">
+<li><p><strong>F160W</strong></p></li>
+<li><p><strong>F475W</strong></p></li>
+<li><p><strong>F625W</strong></p></li>
+<li><p><strong>F775W</strong></p></li>
+<li><p><strong>F814W</strong></p></li>
+</ul>
+<p>For each filter, the package includes:</p>
+<ul class="simple">
+<li><p>The galaxy’s science image.</p></li>
+<li><p>The corresponding point spread function (PSF).</p></li>
+<li><p>The local input error image, used for uncertainty estimation.</p></li>
+<li><p>A sky background image for background correction.</p></li>
+</ul>
+</section>
+<section id="input-filter-requirement">
+<h2>Input filter requirement<a class="headerlink" href="#input-filter-requirement" title="Link to this heading"></a></h2>
+<p>The input image filters <strong>must</strong> be included in the <cite>kcorrect</cite> library catalog; otherwise, the simulation will fail. To check which filters are available in the <cite>kcorrect</cite> library, you can use the following code:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dopterianPlus</span> <span class="kn">import</span> <span class="n">dopterian</span>
+
+<span class="c1"># List all available filters in the kcorrect library</span>
+<span class="n">filters</span> <span class="o">=</span> <span class="n">dopterian</span><span class="o">.</span><span class="n">filer_list</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">filters</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="simulation-example">
+<h2>Simulation example<a class="headerlink" href="#simulation-example" title="Link to this heading"></a></h2>
+<p>Below is an example of how to simulate the appearance of a galaxy at a higher redshift using the FITS files provided with the package:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dopterianPlus</span> <span class="kn">import</span> <span class="n">dopterian</span>
+<span class="kn">import</span> <span class="nn">importlib.resources</span> <span class="k">as</span> <span class="nn">pkg_resources</span>
+
+<span class="c1"># Base path for accessing packaged data files</span>
+<span class="n">base_path</span> <span class="o">=</span> <span class="n">pkg_resources</span><span class="o">.</span><span class="n">files</span><span class="p">(</span><span class="s2">&quot;dopterianPlus.data&quot;</span><span class="p">)</span>
+
+<span class="c1"># Define input parameters (low-z and high-z)</span>
+<span class="n">sci_fits_path</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">base_path</span> <span class="o">/</span> <span class="s2">&quot;SCI_F160W.fits&quot;</span><span class="p">,</span>
+    <span class="n">base_path</span> <span class="o">/</span> <span class="s2">&quot;SCI_F475W.fits&quot;</span><span class="p">,</span>
+    <span class="n">base_path</span> <span class="o">/</span> <span class="s2">&quot;SCI_F625W.fits&quot;</span><span class="p">,</span>
+    <span class="n">base_path</span> <span class="o">/</span> <span class="s2">&quot;SCI_F775W.fits&quot;</span><span class="p">,</span>
+    <span class="n">base_path</span> <span class="o">/</span> <span class="s2">&quot;SCI_F814W.fits&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="n">sky_fits_path</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">base_path</span> <span class="o">/</span> <span class="s2">&quot;SKY_F160W.fits&quot;</span><span class="p">,</span>
+    <span class="n">base_path</span> <span class="o">/</span> <span class="s2">&quot;SKY_F475W.fits&quot;</span><span class="p">,</span>
+    <span class="n">base_path</span> <span class="o">/</span> <span class="s2">&quot;SKY_F625W.fits&quot;</span><span class="p">,</span>
+    <span class="n">base_path</span> <span class="o">/</span> <span class="s2">&quot;SKY_F775W.fits&quot;</span><span class="p">,</span>
+    <span class="n">base_path</span> <span class="o">/</span> <span class="s2">&quot;SKY_F814W.fits&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="n">imerr_fits_path</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">base_path</span> <span class="o">/</span> <span class="s2">&quot;RMS_F160W.fits&quot;</span><span class="p">,</span>
+    <span class="n">base_path</span> <span class="o">/</span> <span class="s2">&quot;RMS_F475W.fits&quot;</span><span class="p">,</span>
+    <span class="n">base_path</span> <span class="o">/</span> <span class="s2">&quot;RMS_F625W.fits&quot;</span><span class="p">,</span>
+    <span class="n">base_path</span> <span class="o">/</span> <span class="s2">&quot;RMS_F775W.fits&quot;</span><span class="p">,</span>
+    <span class="n">base_path</span> <span class="o">/</span> <span class="s2">&quot;RMS_F814W.fits&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="n">lowz_psf_path</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">base_path</span> <span class="o">/</span> <span class="s2">&quot;PSF_F160W.fits&quot;</span><span class="p">,</span>
+    <span class="n">base_path</span> <span class="o">/</span> <span class="s2">&quot;PSF_F475W.fits&quot;</span><span class="p">,</span>
+    <span class="n">base_path</span> <span class="o">/</span> <span class="s2">&quot;PSF_F625W.fits&quot;</span><span class="p">,</span>
+    <span class="n">base_path</span> <span class="o">/</span> <span class="s2">&quot;PSF_F775W.fits&quot;</span><span class="p">,</span>
+    <span class="n">base_path</span> <span class="o">/</span> <span class="s2">&quot;PSF_F814W.fits&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="n">lowz_info</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;redshift&quot;</span><span class="p">:</span> <span class="mf">0.18</span><span class="p">,</span>
+    <span class="s2">&quot;psf&quot;</span><span class="p">:</span> <span class="n">lowz_psf_path</span><span class="p">,</span>
+    <span class="s2">&quot;zp&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">25.946</span><span class="p">,</span> <span class="mf">26.056</span><span class="p">,</span> <span class="mf">25.899</span><span class="p">,</span> <span class="mf">25.661</span><span class="p">,</span> <span class="mf">25.946</span><span class="p">],</span>
+    <span class="s2">&quot;exptime&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">5029.34</span><span class="p">,</span> <span class="mf">4128.0</span><span class="p">,</span> <span class="mf">4066.0</span><span class="p">,</span> <span class="mf">4126.0</span><span class="p">,</span> <span class="mf">8080.0</span><span class="p">],</span>
+    <span class="s2">&quot;filter&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;clash_wfc3_f160w&quot;</span><span class="p">,</span> <span class="s2">&quot;clash_wfc3_f475w&quot;</span><span class="p">,</span> <span class="s2">&quot;clash_wfc3_f625w&quot;</span><span class="p">,</span> <span class="s2">&quot;clash_wfc3_f775w&quot;</span><span class="p">,</span> <span class="s2">&quot;clash_wfc3_f814w&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;pixscale&quot;</span><span class="p">:</span> <span class="mf">0.065</span><span class="p">,</span>
+    <span class="s2">&quot;lambda&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">15405</span><span class="p">,</span> <span class="mi">4770</span><span class="p">,</span> <span class="mi">6310</span><span class="p">,</span> <span class="mi">7647</span><span class="p">,</span> <span class="mi">8057</span><span class="p">],</span>
+<span class="p">}</span>
+
+<span class="n">highz_psf_path</span> <span class="o">=</span> <span class="n">base_path</span> <span class="o">/</span> <span class="s2">&quot;PSF_F814W.fits&quot;</span>
+<span class="n">highz_info</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;redshift&quot;</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">,</span>
+    <span class="s2">&quot;psf&quot;</span><span class="p">:</span> <span class="n">highz_psf_path</span><span class="p">,</span>
+    <span class="s2">&quot;zp&quot;</span><span class="p">:</span> <span class="mf">25.94662243630965</span><span class="p">,</span>
+    <span class="s2">&quot;exptime&quot;</span><span class="p">:</span> <span class="mf">8080.0</span><span class="p">,</span>
+    <span class="s2">&quot;filter&quot;</span><span class="p">:</span> <span class="s2">&quot;clash_wfc3_f814w&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;pixscale&quot;</span><span class="p">:</span> <span class="mf">0.065</span><span class="p">,</span>
+    <span class="s2">&quot;lambda&quot;</span><span class="p">:</span> <span class="mi">8057</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="c1"># Define output parameters</span>
+<span class="n">output_path</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">base_path</span> <span class="o">/</span> <span class="s2">&quot;SCI_OUTPUT.fits&quot;</span><span class="p">,</span>
+    <span class="n">base_path</span> <span class="o">/</span> <span class="s2">&quot;PSF_OUTPUT.fits&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="c1"># Run the simulation</span>
+<span class="n">imOUT</span><span class="p">,</span> <span class="n">psfOUT</span> <span class="o">=</span> <span class="n">dopterian</span><span class="o">.</span><span class="n">ferengi</span><span class="p">(</span>
+    <span class="n">images</span><span class="o">=</span><span class="n">sci_fits_path</span><span class="p">,</span>
+    <span class="n">background</span><span class="o">=</span><span class="n">sky_fits_path</span><span class="p">,</span>
+    <span class="n">lowz_info</span><span class="o">=</span><span class="n">lowz_info</span><span class="p">,</span>
+    <span class="n">highz_info</span><span class="o">=</span><span class="n">highz_info</span><span class="p">,</span>
+    <span class="n">namesout</span><span class="o">=</span><span class="n">output_path</span><span class="p">,</span>
+    <span class="n">imerr</span><span class="o">=</span><span class="n">imerr_fits_path</span><span class="p">,</span>
+    <span class="n">err0_mag</span><span class="o">=</span><span class="p">[</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span>
+    <span class="n">kc_obj</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">noflux</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">evo</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">minimum_output_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">noconv</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">extend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">check_psf_FWHM</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">nonoise</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>For more details about the <code class="docutils literal notranslate"><span class="pre">ferengi</span></code> function, including its parameters and usage, refer to its <a class="reference internal" href="dopterian.html#dopterianPlus.dopterian.ferengi" title="dopterianPlus.dopterian.ferengi"><code class="xref py py-func docutils literal notranslate"><span class="pre">dopterianPlus.dopterian.ferengi()</span></code></a>. This will provide an in-depth explanation of how the function operates and additional options that can be configured.</p>
+</section>
+<section id="efficient-use-of-the-kcorrect-object">
+<h2>Efficient use of the kcorrect object<a class="headerlink" href="#efficient-use-of-the-kcorrect-object" title="Link to this heading"></a></h2>
+<p>When running simulations on datasets with a considerable number of galaxies, all sharing the same input and output filters, it is <strong>recommended</strong> to create the <code class="docutils literal notranslate"><span class="pre">kcorrect</span></code> object beforehand. This avoids redundant computations and significantly improves the performance of the simulation.</p>
+<p>To dynamically calculate the <code class="docutils literal notranslate"><span class="pre">responses_map</span></code> parameter based on the closest filter in <code class="docutils literal notranslate"><span class="pre">lowz_info</span></code>, use the following code:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dopterianPlus</span> <span class="kn">import</span> <span class="n">cosmology</span> <span class="k">as</span> <span class="n">cosmos</span>
+<span class="kn">from</span> <span class="nn">astropy.cosmology</span> <span class="kn">import</span> <span class="n">FlatLambdaCDM</span>
+<span class="kn">import</span> <span class="nn">kcorrect</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Define cosmology using values from dopterianPlus</span>
+<span class="n">cos</span> <span class="o">=</span> <span class="n">FlatLambdaCDM</span><span class="p">(</span><span class="n">H0</span><span class="o">=</span><span class="n">cosmos</span><span class="o">.</span><span class="n">H0</span><span class="p">,</span> <span class="n">Om0</span><span class="o">=</span><span class="n">cosmos</span><span class="o">.</span><span class="n">Omat</span><span class="p">,</span> <span class="n">Ob0</span><span class="o">=</span><span class="n">cosmos</span><span class="o">.</span><span class="n">Obar</span><span class="p">)</span>
+
+<span class="c1"># Dynamically calculate responses_map (closest filter in lowz_info to highz_info)</span>
+<span class="n">dz</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">lowz_info</span><span class="p">[</span><span class="s1">&#39;lambda&#39;</span><span class="p">])</span> <span class="o">/</span> <span class="n">highz_info</span><span class="p">[</span><span class="s1">&#39;lambda&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">idx_bestfilt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">dz</span><span class="p">)</span>  <span class="c1"># Index of the closest matching low-redshift filter</span>
+<span class="n">responses_map</span> <span class="o">=</span> <span class="p">[</span><span class="n">lowz_info</span><span class="p">[</span><span class="s1">&#39;filter&#39;</span><span class="p">][</span><span class="n">idx_bestfilt</span><span class="p">]]</span>  <span class="c1"># The closest low-redshift filter as a list</span>
+
+<span class="c1"># Create the kcorrect object</span>
+<span class="n">kc</span> <span class="o">=</span> <span class="n">kcorrect</span><span class="o">.</span><span class="n">kcorrect</span><span class="o">.</span><span class="n">Kcorrect</span><span class="p">(</span>
+    <span class="n">responses</span><span class="o">=</span><span class="n">lowz_info</span><span class="p">[</span><span class="s1">&#39;filter&#39;</span><span class="p">],</span>          <span class="c1"># Filters at low redshift</span>
+    <span class="n">responses_out</span><span class="o">=</span><span class="p">[</span><span class="n">highz_info</span><span class="p">[</span><span class="s1">&#39;filter&#39;</span><span class="p">]],</span>  <span class="c1"># Single filter at high redshift</span>
+    <span class="n">responses_map</span><span class="o">=</span><span class="n">responses_map</span><span class="p">,</span>           <span class="c1"># Dynamically computed responses_map</span>
+    <span class="n">cosmo</span><span class="o">=</span><span class="n">cos</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>By precomputing the <code class="docutils literal notranslate"><span class="pre">kcorrect</span></code> object and passing it as the <code class="docutils literal notranslate"><span class="pre">kc_obj</span></code> parameter to the <code class="docutils literal notranslate"><span class="pre">ferengi</span></code> function, you can avoid recalculating the same information for every galaxy, reducing computation time significantly:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span> <span class="n">imOUT</span><span class="p">,</span> <span class="n">psfOUT</span> <span class="o">=</span> <span class="n">dopterian</span><span class="o">.</span><span class="n">ferengi</span><span class="p">(</span>
+    <span class="n">images</span><span class="o">=</span><span class="n">sci_fits_path</span><span class="p">,</span>
+    <span class="n">background</span><span class="o">=</span><span class="n">sky_fits_path</span><span class="p">,</span>
+    <span class="n">lowz_info</span><span class="o">=</span><span class="n">lowz_info</span><span class="p">,</span>
+    <span class="n">highz_info</span><span class="o">=</span><span class="n">highz_info</span><span class="p">,</span>
+    <span class="n">namesout</span><span class="o">=</span><span class="n">output_path</span><span class="p">,</span>
+    <span class="n">imerr</span><span class="o">=</span><span class="n">imerr_fits_path</span><span class="p">,</span>
+    <span class="n">err0_mag</span><span class="o">=</span><span class="p">[</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span>
+    <span class="n">kc_obj</span><span class="o">=</span><span class="n">kc</span><span class="p">,</span>
+    <span class="n">noflux</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">evo</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">minimum_output_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">noconv</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">extend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">check_psf_FWHM</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">nonoise</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="about.html" class="btn btn-neutral float-left" title="About Dopterian+" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dopterian.html" class="btn btn-neutral float-right" title="dopterian Submodule" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Diego Maldonado, Pierluigi Cerulo, Ana Paulino-Afonso.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

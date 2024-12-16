@@ -1,0 +1,188 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>dopterianPlus.cut_postage_stamp &mdash; Dopterian+ 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=01f34227"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Dopterian+
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About Dopterian-Plus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage_examples.html">Usage Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dopterian.html">dopterian Submodule</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../calc_FWHM.html">Calc_FWHM Submodule</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cut_postage_stamp.html">cut_postage_stamp</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Dopterian+</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">dopterianPlus.cut_postage_stamp</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for dopterianPlus.cut_postage_stamp</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">astropy.io</span> <span class="kn">import</span> <span class="n">fits</span>
+
+<span class="c1"># FUNCTION THAT CUTS A POSTAGE STAMP IMAGE AND SUBTRACTS THE BACKGROUND</span>
+<span class="c1"># (Pierluigi Cerulo 24/04/2019)</span>
+
+<div class="viewcode-block" id="cut_stamp">
+<a class="viewcode-back" href="../../cut_postage_stamp.html#dopterianPlus.cut_postage_stamp.cut_stamp">[docs]</a>
+<span class="k">def</span> <span class="nf">cut_stamp</span><span class="p">(</span><span class="n">parent_image_data</span><span class="p">,</span> <span class="n">parent_image_header</span><span class="p">,</span> <span class="n">postage_stamp_image_prefix</span><span class="p">,</span> <span class="n">size_x</span><span class="p">,</span> <span class="n">size_y</span><span class="p">,</span> <span class="n">x_image</span><span class="p">,</span> <span class="n">y_image</span><span class="p">,</span> <span class="n">background_value</span><span class="p">,</span> <span class="n">RA_object</span><span class="p">,</span> <span class="n">DEC_object</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Extract a postage stamp image from a parent astronomical image and subtract the background.</span>
+
+<span class="sd">    This function creates a smaller image centered on a specified position within a larger parent image.</span>
+<span class="sd">    It updates the image header with the coordinates of the extracted region and subtracts a background value.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    parent_image_data : ndarray</span>
+<span class="sd">        The 2D data array of the parent image.</span>
+<span class="sd">    parent_image_header : `astropy.io.fits.Header`</span>
+<span class="sd">        Header of the parent image containing metadata such as dimensions and WCS information.</span>
+<span class="sd">    postage_stamp_image_prefix : str</span>
+<span class="sd">        Prefix for the output postage stamp FITS file.</span>
+<span class="sd">    size_x : int</span>
+<span class="sd">        Half-width of the postage stamp in pixels along the x-axis.</span>
+<span class="sd">    size_y : int</span>
+<span class="sd">        Half-height of the postage stamp in pixels along the y-axis.</span>
+<span class="sd">    x_image : float</span>
+<span class="sd">        X-coordinate of the center of the postage stamp in the parent image (in pixels).</span>
+<span class="sd">    y_image : float</span>
+<span class="sd">        Y-coordinate of the center of the postage stamp in the parent image (in pixels).</span>
+<span class="sd">    background_value : float</span>
+<span class="sd">        Background value to subtract from the postage stamp image.</span>
+<span class="sd">    RA_object : float</span>
+<span class="sd">        Right Ascension (RA) of the object at the center of the postage stamp (in degrees).</span>
+<span class="sd">    DEC_object : float</span>
+<span class="sd">        Declination (DEC) of the object at the center of the postage stamp (in degrees).</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    None</span>
+<span class="sd">        The function writes the postage stamp image to a FITS file and does not return any value.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1">#removing output from previous run</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s1">&#39;rm &#39;</span><span class="o">+</span><span class="n">postage_stamp_image_prefix</span><span class="o">+</span><span class="s1">&#39;.fits&#39;</span><span class="p">)</span>
+   
+    <span class="c1"># defining sizes of parent image</span>
+    <span class="n">size_x_parent_image</span> <span class="o">=</span> <span class="n">parent_image_header</span><span class="p">[</span><span class="s1">&#39;NAXIS1&#39;</span><span class="p">]</span>
+    <span class="n">size_y_parent_image</span> <span class="o">=</span> <span class="n">parent_image_header</span><span class="p">[</span><span class="s1">&#39;NAXIS2&#39;</span><span class="p">]</span>
+       
+    <span class="c1"># cutting postage_stamp image</span>
+    <span class="n">postage_stamp_data</span> <span class="o">=</span> <span class="n">parent_image_data</span><span class="p">[</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">y_image</span><span class="o">-</span><span class="n">size_y</span><span class="p">),</span> <span class="mi">0</span><span class="p">]):</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">y_image</span><span class="o">+</span><span class="n">size_y</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">size_y_parent_image</span><span class="p">)]),</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">x_image</span><span class="o">-</span><span class="n">size_x</span><span class="p">),</span> <span class="mi">0</span><span class="p">]):</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">x_image</span><span class="o">+</span><span class="n">size_x</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">size_x_parent_image</span><span class="p">)])</span> <span class="p">]</span>
+   
+    <span class="nb">print</span> <span class="p">(</span><span class="n">postage_stamp_image_prefix</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">y_image</span><span class="o">-</span><span class="n">size_y</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">y_image</span><span class="o">+</span><span class="n">size_y</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">x_image</span><span class="o">-</span><span class="n">size_x</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">x_image</span><span class="o">+</span><span class="n">size_x</span><span class="p">))</span>
+   
+    <span class="c1"># updating header</span>
+    <span class="c1"># - defining centre of postage stamp image</span>
+    <span class="n">xc</span> <span class="o">=</span> <span class="n">size_x</span><span class="o">+</span><span class="mf">1.0</span>
+    <span class="n">yc</span> <span class="o">=</span> <span class="n">size_y</span><span class="o">+</span><span class="mf">1.0</span>
+
+    <span class="c1"># - updating coordinates</span>
+    <span class="n">postage_stamp_header</span> <span class="o">=</span> <span class="n">parent_image_header</span>
+
+    <span class="n">postage_stamp_header</span><span class="p">[</span><span class="s1">&#39;CRPIX1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">xc</span>
+    <span class="n">postage_stamp_header</span><span class="p">[</span><span class="s1">&#39;CRPIX2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">yc</span>
+
+    <span class="n">postage_stamp_header</span><span class="p">[</span><span class="s1">&#39;CRVAL1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">RA_object</span>
+    <span class="n">postage_stamp_header</span><span class="p">[</span><span class="s1">&#39;CRVAL2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">DEC_object</span>
+
+    <span class="c1"># subtracting background from image</span>
+    <span class="n">postage_stamp_data_output</span> <span class="o">=</span> <span class="n">postage_stamp_data</span> <span class="c1">#- background_value</span>
+
+    <span class="c1"># setting nan values to 0</span>
+    <span class="c1">#postage_stamp_data_nan = np.where(np.isnan(postage_stamp_data_output) == True)[0]</span>
+    <span class="n">postage_stamp_data_output_zero</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan_to_num</span><span class="p">(</span><span class="n">postage_stamp_data_output</span><span class="p">)</span>
+   
+   
+    <span class="c1"># writing postage-stamp image to file</span>
+    <span class="n">hdu_postage_stamp</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">PrimaryHDU</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">postage_stamp_data_output_zero</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="n">postage_stamp_header</span><span class="p">)</span>
+    <span class="n">hdu_postage_stamp</span><span class="o">.</span><span class="n">writeto</span><span class="p">(</span><span class="n">postage_stamp_image_prefix</span><span class="o">+</span><span class="s1">&#39;.fits&#39;</span><span class="p">)</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Diego Maldonado, Pierluigi Cerulo, Ana Paulino-Afonso.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

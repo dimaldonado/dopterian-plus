@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>dopterianPlus.calc_FWHM &#8212; dopterian-plus 0.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-sphinx.css?v=284a2d1d" />
+    <script src="../../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../../_static/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
+<script type="text/javascript" src="../../_static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../_static/bootstrap-sphinx.js"></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../index.html">
+          Dopterian-Plus</a>
+        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="https://github.com/tu-repo">GitHub</a></li>
+                <li><a href="../../index.html">Documentation</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../index.html">Contents <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About Dopterian-Plus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage_examples.html">Usage Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dopterian.html">Dopterian Submodule</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../calc_FWHM.html">Calc_FWHM Submodule</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"></ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary">
+<form action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
+      
+  <h1>Source code for dopterianPlus.calc_FWHM</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># coding: utf-8</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">astropy.io</span> <span class="kn">import</span> <span class="n">fits</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">curve_fit</span>
+
+<div class="viewcode-block" id="calc_1d_FWHM">
+<a class="viewcode-back" href="../../calc_FWHM.html#dopterianPlus.calc_FWHM.calc_1d_FWHM">[docs]</a>
+<span class="k">def</span> <span class="nf">calc_1d_FWHM</span><span class="p">(</span><span class="n">psf_integrated</span><span class="p">,</span> <span class="n">psf_abscissa</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the 1D Full Width at Half Maximum (FWHM) of a PSF profile.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    psf_integrated : ndarray</span>
+<span class="sd">        Integrated intensity of the PSF along a specific axis.</span>
+<span class="sd">    psf_abscissa : ndarray</span>
+<span class="sd">        Pixel positions corresponding to the intensity values.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        The FWHM of the PSF profile along the given axis.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    - The function determines the positions where the intensity is equal to half of the maximum value.</span>
+<span class="sd">    - Linear interpolation is used to enhance the precision of the estimated FWHM.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">max_intensity</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">psf_integrated</span><span class="p">)</span>  <span class="c1"># Peak intensity</span>
+    <span class="n">half_max</span> <span class="o">=</span> <span class="n">max_intensity</span> <span class="o">/</span> <span class="mi">2</span>           <span class="c1"># Half-maximum intensity</span>
+
+    <span class="c1"># Position of the peak intensity</span>
+    <span class="n">max_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">psf_integrated</span><span class="p">)</span>
+
+    <span class="c1"># Identify positions around the half-maximum to the left of the peak</span>
+    <span class="n">half_pos_left_low</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">psf_abscissa</span> <span class="o">&lt;</span> <span class="n">max_pos</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">psf_integrated</span> <span class="o">&lt;</span> <span class="n">half_max</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">half_pos_left_high</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">psf_abscissa</span> <span class="o">&lt;</span> <span class="n">max_pos</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">psf_integrated</span> <span class="o">&gt;=</span> <span class="n">half_max</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="c1"># Interpolate to find the exact position of the half-maximum intensity</span>
+    <span class="n">xp_left</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">half_pos_left_low</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">half_pos_left_high</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+    <span class="n">fp_left</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">psf_integrated</span><span class="p">[</span><span class="n">half_pos_left_low</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]],</span> <span class="n">psf_integrated</span><span class="p">[</span><span class="n">half_pos_left_high</span><span class="p">[</span><span class="mi">0</span><span class="p">]]])</span>
+    <span class="n">x_interp_half_max_left</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">xp_left</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">xp_left</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">1000</span><span class="p">)</span>
+    <span class="n">y_interp_half_max_left</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">x_interp_half_max_left</span><span class="p">,</span> <span class="n">xp_left</span><span class="p">,</span> <span class="n">fp_left</span><span class="p">)</span>
+    <span class="n">half_max_pos_left</span> <span class="o">=</span> <span class="n">x_interp_half_max_left</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">y_interp_half_max_left</span> <span class="o">-</span> <span class="n">half_max</span><span class="p">))]</span>
+
+    <span class="c1"># Identify positions around the half-maximum to the right of the peak</span>
+    <span class="n">half_pos_right_low</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">psf_abscissa</span> <span class="o">&gt;</span> <span class="n">max_pos</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">psf_integrated</span> <span class="o">&lt;</span> <span class="n">half_max</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">half_pos_right_high</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">psf_abscissa</span> <span class="o">&gt;</span> <span class="n">max_pos</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">psf_integrated</span> <span class="o">&gt;=</span> <span class="n">half_max</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="c1"># Interpolate to find the exact position of the half-maximum intensity</span>
+    <span class="n">xp_right</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">half_pos_right_high</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">half_pos_right_low</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+    <span class="n">fp_right</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">psf_integrated</span><span class="p">[</span><span class="n">half_pos_right_high</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]],</span> <span class="n">psf_integrated</span><span class="p">[</span><span class="n">half_pos_right_low</span><span class="p">[</span><span class="mi">0</span><span class="p">]]])</span>
+    <span class="n">x_interp_half_max_right</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">xp_right</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">xp_right</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">1000</span><span class="p">)</span>
+    <span class="n">y_interp_half_max_right</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">x_interp_half_max_right</span><span class="p">,</span> <span class="n">xp_right</span><span class="p">,</span> <span class="n">fp_right</span><span class="p">)</span>
+    <span class="n">half_max_pos_right</span> <span class="o">=</span> <span class="n">x_interp_half_max_right</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">y_interp_half_max_right</span> <span class="o">-</span> <span class="n">half_max</span><span class="p">))]</span>
+
+    <span class="c1"># Calculate the FWHM as the difference between the left and right positions</span>
+    <span class="n">fwhm_1d</span> <span class="o">=</span> <span class="n">half_max_pos_right</span> <span class="o">-</span> <span class="n">half_max_pos_left</span>
+
+    <span class="k">return</span> <span class="n">fwhm_1d</span></div>
+
+
+
+<div class="viewcode-block" id="calc_FWHM">
+<a class="viewcode-back" href="../../calc_FWHM.html#dopterianPlus.calc_FWHM.calc_FWHM">[docs]</a>
+<span class="k">def</span> <span class="nf">calc_FWHM</span><span class="p">(</span><span class="n">psf_data</span><span class="p">,</span> <span class="n">pixel_scale</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the 2D Full Width at Half Maximum (FWHM) of a PSF.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    psf_data : ndarray</span>
+<span class="sd">        2D PSF data array. For 3D data with only one slice, the function automatically squeezes to 2D.</span>
+<span class="sd">    pixel_scale : float</span>
+<span class="sd">        Pixel scale of the data in physical units (e.g., arcseconds per pixel).</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        The FWHM of the PSF in physical units.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    - The FWHM is computed as the average of the FWHMs along the x and y axes.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Handle 3D PSF data with a single slice</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">psf_data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span> <span class="ow">and</span> <span class="n">psf_data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">psf_data</span> <span class="o">=</span> <span class="n">psf_data</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="c1"># Compute the integrated PSF profiles along the x and y axes</span>
+    <span class="n">psf_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">psf_data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">psf_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">psf_data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Create arrays for pixel indices along each axis</span>
+    <span class="n">psf_indices_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">psf_data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">psf_indices_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">psf_data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="c1"># Calculate the FWHM along each axis</span>
+    <span class="n">fwhm_x</span> <span class="o">=</span> <span class="n">calc_1d_FWHM</span><span class="p">(</span><span class="n">psf_x</span><span class="p">,</span> <span class="n">psf_indices_x</span><span class="p">)</span>
+    <span class="n">fwhm_y</span> <span class="o">=</span> <span class="n">calc_1d_FWHM</span><span class="p">(</span><span class="n">psf_y</span><span class="p">,</span> <span class="n">psf_indices_y</span><span class="p">)</span>
+
+    <span class="c1"># Compute the average FWHM and scale it to physical units</span>
+    <span class="n">fwhm</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">fwhm_x</span> <span class="o">+</span> <span class="n">fwhm_y</span><span class="p">)</span> <span class="o">*</span> <span class="n">pixel_scale</span>
+
+    <span class="k">return</span> <span class="n">fwhm</span></div>
+
+</pre></div>
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+        <br/>
+        
+      
+    </p>
+    <p>
+        &copy; Copyright 2024, Diego Maldonado, Pierluigi Cerulo, Ana Paulino-Afonso.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.1.3.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

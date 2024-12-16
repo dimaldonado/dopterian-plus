@@ -1722,7 +1722,6 @@ def kcorrect_maggies(image, im_err, lowz_info, highz_info, lambda_lo, lambda_hi,
 
         # Perform K-correction calculations
         coeffs = kc.fit_coeffs(redshift=redshift_lo, maggies=maggies, ivar=ivar)
-        k_values = kc.kcorrect(redshift=redshift_lo, coeffs=coeffs)
 
         # Reconstruct magnitudes at the high redshift
         r_maggies = kc.reconstruct_out(redshift=redshift_hi, coeffs=coeffs)
@@ -1776,6 +1775,7 @@ def ferengi(images, background, lowz_info, highz_info, namesout, imerr=None, err
         List of paths to the background sky images, one for each band. All files must be in FITS format and in units of [counts/sec].
     lowz_info : dict
         Dictionary containing information about the low-redshift input. Keys include:
+
         - 'redshift': float, redshift of the input images.
         - 'psf': list of str, paths to the PSFs for each band at low redshift (FITS format, normalized total flux to 1).
         - 'zp': list of float, zero-point magnitudes for each band [magnitudes].
@@ -1785,6 +1785,7 @@ def ferengi(images, background, lowz_info, highz_info, namesout, imerr=None, err
         - 'lambda': list of float, central wavelengths of the filters [angstroms].
     highz_info : dict
         Dictionary containing information about the high-redshift simulation. Keys include:
+
         - 'redshift': float, target redshift.
         - 'psf': str, path to the PSF file for the simulation (FITS format, normalized total flux to 1).
         - 'zp': float, zero-point magnitude [magnitudes].
@@ -1805,6 +1806,7 @@ def ferengi(images, background, lowz_info, highz_info, namesout, imerr=None, err
         If True, skips flux scaling. Default is False.
     evo : float, optional
         Evolutionary correction factor. Two models are used:
+        
         - If `evo` is specified, it applies the equation:
           `evo_fact = 10 ** (-0.4 * evo * z_high)`
         - If `evo` is None, it uses the Sobral et al. (2013) luminosity evolution model.
@@ -1828,7 +1830,6 @@ def ferengi(images, background, lowz_info, highz_info, namesout, imerr=None, err
     tuple
         - ndarray: The redshifted and convolved image.
         - ndarray: The reconstructed PSF.
-        - int: Status code for the operation (-99 if an error occurs).
 
     Raises
     ------

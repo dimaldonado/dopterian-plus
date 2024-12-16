@@ -1,0 +1,1228 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>dopterian Submodule &mdash; Dopterian+ 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=01f34227"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="calc_FWHM Submodule" href="calc_FWHM.html" />
+    <link rel="prev" title="Usage Examples" href="usage_examples.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Dopterian+
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="about.html">About Dopterian+</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage_examples.html">Usage Examples</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">dopterian Submodule</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#dopterianPlus.dopterian.barycenter"><code class="docutils literal notranslate"><span class="pre">barycenter()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dopterianPlus.dopterian.check_PSF_FWHM"><code class="docutils literal notranslate"><span class="pre">check_PSF_FWHM()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dopterianPlus.dopterian.cts2maggies"><code class="docutils literal notranslate"><span class="pre">cts2maggies()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dopterianPlus.dopterian.cts2mags"><code class="docutils literal notranslate"><span class="pre">cts2mags()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dopterianPlus.dopterian.dist_ellipse"><code class="docutils literal notranslate"><span class="pre">dist_ellipse()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dopterianPlus.dopterian.dump_results"><code class="docutils literal notranslate"><span class="pre">dump_results()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dopterianPlus.dopterian.edge_index"><code class="docutils literal notranslate"><span class="pre">edge_index()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dopterianPlus.dopterian.ferengi"><code class="docutils literal notranslate"><span class="pre">ferengi()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dopterianPlus.dopterian.ferengi_clip_edge"><code class="docutils literal notranslate"><span class="pre">ferengi_clip_edge()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dopterianPlus.dopterian.ferengi_convolve_plus_noise"><code class="docutils literal notranslate"><span class="pre">ferengi_convolve_plus_noise()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dopterianPlus.dopterian.ferengi_deconvolve"><code class="docutils literal notranslate"><span class="pre">ferengi_deconvolve()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dopterianPlus.dopterian.ferengi_downscale"><code class="docutils literal notranslate"><span class="pre">ferengi_downscale()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dopterianPlus.dopterian.ferengi_make_psf_same"><code class="docutils literal notranslate"><span class="pre">ferengi_make_psf_same()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dopterianPlus.dopterian.ferengi_odd_n_square"><code class="docutils literal notranslate"><span class="pre">ferengi_odd_n_square()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dopterianPlus.dopterian.ferengi_psf_centre"><code class="docutils literal notranslate"><span class="pre">ferengi_psf_centre()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dopterianPlus.dopterian.ferengi_transformation_psf"><code class="docutils literal notranslate"><span class="pre">ferengi_transformation_psf()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dopterianPlus.dopterian.filer_list"><code class="docutils literal notranslate"><span class="pre">filer_list()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dopterianPlus.dopterian.flam2fnu"><code class="docutils literal notranslate"><span class="pre">flam2fnu()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dopterianPlus.dopterian.fnu2flam"><code class="docutils literal notranslate"><span class="pre">fnu2flam()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dopterianPlus.dopterian.fnu2maggies"><code class="docutils literal notranslate"><span class="pre">fnu2maggies()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dopterianPlus.dopterian.kcorrect_maggies"><code class="docutils literal notranslate"><span class="pre">kcorrect_maggies()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dopterianPlus.dopterian.lam2nu"><code class="docutils literal notranslate"><span class="pre">lam2nu()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dopterianPlus.dopterian.lambda_eff"><code class="docutils literal notranslate"><span class="pre">lambda_eff()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dopterianPlus.dopterian.lum_evolution"><code class="docutils literal notranslate"><span class="pre">lum_evolution()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dopterianPlus.dopterian.lup2maggies"><code class="docutils literal notranslate"><span class="pre">lup2maggies()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dopterianPlus.dopterian.maggies2cts"><code class="docutils literal notranslate"><span class="pre">maggies2cts()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dopterianPlus.dopterian.maggies2fnu"><code class="docutils literal notranslate"><span class="pre">maggies2fnu()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dopterianPlus.dopterian.maggies2lup"><code class="docutils literal notranslate"><span class="pre">maggies2lup()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dopterianPlus.dopterian.maggies2mags"><code class="docutils literal notranslate"><span class="pre">maggies2mags()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dopterianPlus.dopterian.mags2cts"><code class="docutils literal notranslate"><span class="pre">mags2cts()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dopterianPlus.dopterian.mags2maggies"><code class="docutils literal notranslate"><span class="pre">mags2maggies()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dopterianPlus.dopterian.nu2lam"><code class="docutils literal notranslate"><span class="pre">nu2lam()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dopterianPlus.dopterian.predict_redshifted_FWHM"><code class="docutils literal notranslate"><span class="pre">predict_redshifted_FWHM()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dopterianPlus.dopterian.predict_redshifted_image_size"><code class="docutils literal notranslate"><span class="pre">predict_redshifted_image_size()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dopterianPlus.dopterian.random_indices"><code class="docutils literal notranslate"><span class="pre">random_indices()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dopterianPlus.dopterian.rebin2d"><code class="docutils literal notranslate"><span class="pre">rebin2d()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dopterianPlus.dopterian.resistent_mean"><code class="docutils literal notranslate"><span class="pre">resistent_mean()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dopterianPlus.dopterian.ring_sky"><code class="docutils literal notranslate"><span class="pre">ring_sky()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dopterianPlus.dopterian.robust_linefit"><code class="docutils literal notranslate"><span class="pre">robust_linefit()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="calc_FWHM.html">calc_FWHM Submodule</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cut_postage_stamp.html">cut_postage_stamp submodule</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Dopterian+</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">dopterian Submodule</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/dimaldonado/dopterian-plus/blob/maindopterian.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="dopterian-submodule">
+<h1>dopterian Submodule<a class="headerlink" href="#dopterian-submodule" title="Link to this heading"></a></h1>
+<p>This section provides documentation for the <cite>dopterian.py</cite> submodule.</p>
+<dl class="py function" id="module-dopterianPlus.dopterian">
+<dt class="sig sig-object py" id="dopterianPlus.dopterian.barycenter">
+<span class="sig-prename descclassname"><span class="pre">dopterianPlus.dopterian.</span></span><span class="sig-name descname"><span class="pre">barycenter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">segmap</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dopterianPlus/dopterian.html#barycenter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dopterianPlus.dopterian.barycenter" title="Link to this definition"></a></dt>
+<dd><p>Compute the barycenter of a galaxy from an image and segmentation map.</p>
+<p>This function calculates the barycenter (center of mass) of a galaxy
+using its intensity values in the input image and a corresponding
+segmentation map.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>img</strong> (<em>ndarray</em>) – 2D image array representing the intensity of the galaxy.</p></li>
+<li><p><strong>segmap</strong> (<em>ndarray</em>) – 2D segmentation map where the galaxy is defined. Values should be
+binary (1 for the galaxy and 0 for the background).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Coordinates of the barycenter <cite>(X, Y)</cite>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple of float</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The barycenter is computed as a weighted average of the pixel positions,
+where the weights are given by the intensity values in <cite>img</cite> masked by
+<cite>segmap</cite>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dopterianPlus.dopterian.check_PSF_FWHM">
+<span class="sig-prename descclassname"><span class="pre">dopterianPlus.dopterian.</span></span><span class="sig-name descname"><span class="pre">check_PSF_FWHM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">psf_low</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psf_high</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pixcale_low_z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pixscale_high_z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_low</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_high</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dopterianPlus/dopterian.html#check_PSF_FWHM"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dopterianPlus.dopterian.check_PSF_FWHM" title="Link to this definition"></a></dt>
+<dd><p>Verify if the PSF FWHM at low redshift is compatible with the PSF at high redshift.</p>
+<p>This function checks whether the redshifted FWHM of the PSF at low redshift
+is smaller than or equal to the FWHM of the PSF at high redshift.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>psf_low</strong> (<em>ndarray</em>) – PSF image at the lower redshift.</p></li>
+<li><p><strong>psf_high</strong> (<em>ndarray</em>) – PSF image at the higher redshift.</p></li>
+<li><p><strong>pixcale_low_z</strong> (<em>float</em>) – Pixel scale at the lower redshift.</p></li>
+<li><p><strong>pixscale_high_z</strong> (<em>float</em>) – Pixel scale at the higher redshift.</p></li>
+<li><p><strong>z_low</strong> (<em>float</em>) – Lower redshift value.</p></li>
+<li><p><strong>z_high</strong> (<em>float</em>) – Higher redshift value.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if the redshifted low-z PSF FWHM is compatible with the high-z PSF,
+False otherwise.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dopterianPlus.dopterian.cts2maggies">
+<span class="sig-prename descclassname"><span class="pre">dopterianPlus.dopterian.</span></span><span class="sig-name descname"><span class="pre">cts2maggies</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exptime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zp</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dopterianPlus/dopterian.html#cts2maggies"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dopterianPlus.dopterian.cts2maggies" title="Link to this definition"></a></dt>
+<dd><p>Convert counts to flux density in maggies.</p>
+<p>This function calculates flux density in maggies from the total counts,
+exposure time, and zero-point magnitude.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cts</strong> (<em>float</em><em> or </em><em>ndarray</em>) – Total counts from the observation.</p></li>
+<li><p><strong>exptime</strong> (<em>float</em>) – Exposure time in seconds.</p></li>
+<li><p><strong>zp</strong> (<em>float</em>) – Zero-point magnitude.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Flux density in maggies.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float or ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dopterianPlus.dopterian.cts2mags">
+<span class="sig-prename descclassname"><span class="pre">dopterianPlus.dopterian.</span></span><span class="sig-name descname"><span class="pre">cts2mags</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exptime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zp</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dopterianPlus/dopterian.html#cts2mags"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dopterianPlus.dopterian.cts2mags" title="Link to this definition"></a></dt>
+<dd><p>Convert counts to magnitudes.</p>
+<p>This function calculates astronomical magnitudes from the total counts,
+exposure time, and zero-point magnitude.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cts</strong> (<em>float</em><em> or </em><em>ndarray</em>) – Total counts from the observation.</p></li>
+<li><p><strong>exptime</strong> (<em>float</em>) – Exposure time in seconds.</p></li>
+<li><p><strong>zp</strong> (<em>float</em>) – Zero-point magnitude.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Astronomical magnitudes.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float or ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dopterianPlus.dopterian.dist_ellipse">
+<span class="sig-prename descclassname"><span class="pre">dopterianPlus.dopterian.</span></span><span class="sig-name descname"><span class="pre">dist_ellipse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ang</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dopterianPlus/dopterian.html#dist_ellipse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dopterianPlus.dopterian.dist_ellipse" title="Link to this definition"></a></dt>
+<dd><p>Compute distances to the center in elliptical apertures.</p>
+<p>This function calculates the distance of each pixel in an image
+to the center <cite>(xc, yc)</cite> using elliptical apertures, accounting
+for axis ratio and rotation angle.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>img</strong> (<em>ndarray</em>) – Input 2D image.</p></li>
+<li><p><strong>xc</strong> (<em>float</em>) – X-coordinate of the center.</p></li>
+<li><p><strong>yc</strong> (<em>float</em>) – Y-coordinate of the center.</p></li>
+<li><p><strong>q</strong> (<em>float</em>) – Axis ratio of the ellipse (minor/major).</p></li>
+<li><p><strong>ang</strong> (<em>float</em>) – Rotation angle of the ellipse in degrees.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A 2D array where each value represents the distance of the
+corresponding pixel to the center <cite>(xc, yc)</cite> in the elliptical frame.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dopterianPlus.dopterian.dump_results">
+<span class="sig-prename descclassname"><span class="pre">dopterianPlus.dopterian.</span></span><span class="sig-name descname"><span class="pre">dump_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">imgname_in</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bgimage_in</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names_out</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lowz_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">highz_info</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dopterianPlus/dopterian.html#dump_results"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dopterianPlus.dopterian.dump_results" title="Link to this definition"></a></dt>
+<dd><p>Save processed image and PSF to FITS files with metadata.</p>
+<p>This function writes the processed image and its associated PSF to separate
+FITS files. The header of the image file is populated with metadata about
+the input parameters, including low- and high-redshift information.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image</strong> (<em>ndarray</em>) – Processed 2D image to save.</p></li>
+<li><p><strong>psf</strong> (<em>ndarray</em>) – PSF associated with the processed image.</p></li>
+<li><p><strong>imgname_in</strong> (<em>str</em><em> or </em><em>list</em><em> of </em><em>str</em>) – Input image file name(s).</p></li>
+<li><p><strong>bgimage_in</strong> (<em>str</em><em> or </em><em>list</em><em> of </em><em>str</em>) – Background image file name(s).</p></li>
+<li><p><strong>names_out</strong> (<em>tuple</em><em> of </em><em>str</em>) – Output file names for the image and PSF, in the format <cite>(image_out, psf_out)</cite>.</p></li>
+<li><p><strong>lowz_info</strong> (<em>dict</em>) – Dictionary of parameters for the low-redshift input, including PSF, pixel scale,
+and other related information.</p></li>
+<li><p><strong>highz_info</strong> (<em>dict</em>) – Dictionary of parameters for the high-redshift input, including PSF, pixel scale,
+and other related information.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dopterianPlus.dopterian.edge_index">
+<span class="sig-prename descclassname"><span class="pre">dopterianPlus.dopterian.</span></span><span class="sig-name descname"><span class="pre">edge_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ry</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dopterianPlus/dopterian.html#edge_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dopterianPlus.dopterian.edge_index" title="Link to this definition"></a></dt>
+<dd><p>Generate indices of a ring-shaped region in a 2D array.</p>
+<p>This function creates an index list of elements forming a ring with a
+width of 1 around the center of the array, defined by radii <cite>rx</cite> and <cite>ry</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<em>ndarray</em>) – Input 2D array.</p></li>
+<li><p><strong>rx</strong> (<em>int</em>) – Radius along the x-axis from the center of the array.</p></li>
+<li><p><strong>ry</strong> (<em>int</em>) – Radius along the y-axis from the center of the array.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Tuple containing the row and column indices of the ring elements.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple of ndarrays</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dopterianPlus.dopterian.ferengi">
+<span class="sig-prename descclassname"><span class="pre">dopterianPlus.dopterian.</span></span><span class="sig-name descname"><span class="pre">ferengi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">images</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">background</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lowz_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">highz_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">namesout</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">imerr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">err0_mag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kc_obj</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">noflux</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minimum_output_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">noconv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nonoise</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_psf_FWHM</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">border_clip</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dopterianPlus/dopterian.html#ferengi"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dopterianPlus.dopterian.ferengi" title="Link to this definition"></a></dt>
+<dd><p>Simulate galaxy redshifting with instrumental and cosmological effects.</p>
+<p>Simulates how galaxies would appear at higher redshifts, accounting for angular
+resolution degradation, surface brightness dimming, and wavelength shifts. The process
+integrates PSFs for both redshifts, photometric band adjustments, and optional evolutionary
+corrections to produce realistic observational conditions at the target redshift.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>images</strong> (<em>list</em><em> of </em><em>str</em>) – List of paths to the input images, one for each band. All files must be in FITS format and in units of [counts].</p></li>
+<li><p><strong>background</strong> (<em>list</em><em> of </em><em>str</em>) – List of paths to the background sky images, one for each band. All files must be in FITS format and in units of [counts/sec].</p></li>
+<li><p><strong>lowz_info</strong> (<em>dict</em>) – <p>Dictionary containing information about the low-redshift input. Keys include:</p>
+<ul>
+<li><p>’redshift’: float, redshift of the input images.</p></li>
+<li><p>’psf’: list of str, paths to the PSFs for each band at low redshift (FITS format, normalized total flux to 1).</p></li>
+<li><p>’zp’: list of float, zero-point magnitudes for each band [magnitudes].</p></li>
+<li><p>’exptime’: list of float, exposure times for each band [seconds].</p></li>
+<li><p>’filter’: list of str, names of the input filters for each band. Filters must exist in the <cite>kcorrect</cite> catalog.</p></li>
+<li><p>’pixscale’: float, pixel scale of the images [arcseconds per pixel].</p></li>
+<li><p>’lambda’: list of float, central wavelengths of the filters [angstroms].</p></li>
+</ul>
+</p></li>
+<li><p><strong>highz_info</strong> (<em>dict</em>) – <p>Dictionary containing information about the high-redshift simulation. Keys include:</p>
+<ul>
+<li><p>’redshift’: float, target redshift.</p></li>
+<li><p>’psf’: str, path to the PSF file for the simulation (FITS format, normalized total flux to 1).</p></li>
+<li><p>’zp’: float, zero-point magnitude [magnitudes].</p></li>
+<li><p>’exptime’: float, exposure time [seconds].</p></li>
+<li><p>’filter’: str, name of the output filter. Must exist in the <cite>kcorrect</cite> catalog.</p></li>
+<li><p>’pixscale’: float, pixel scale of the simulation [arcseconds per pixel].</p></li>
+<li><p>’lambda’: float, central wavelength of the output filter [angstroms].</p></li>
+</ul>
+</p></li>
+<li><p><strong>namesout</strong> (<em>list</em><em> of </em><em>str</em>) – Paths to the output files: [output_sci_image, output_psf_image]. The output will be in FITS format.</p></li>
+<li><p><strong>imerr</strong> (<em>list</em><em> of </em><em>str</em><em>, </em><em>optional</em>) – List of paths to error maps for the input images (FITS format, in units of [counts]). Default is None, in which case
+error maps are generated from the square root of the input images.</p></li>
+<li><p><strong>err0_mag</strong> (<em>float</em><em>, </em><em>optional</em>) – Minimum magnitude error for all bands [magnitudes]. Default is None.</p></li>
+<li><p><strong>kc_obj</strong> (<em>object</em><em>, </em><em>optional</em>) – Pre-initialized K-correction object. If not provided, it will be created automatically.</p></li>
+<li><p><strong>noflux</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, skips flux scaling. Default is False.</p></li>
+<li><p><strong>evo</strong> (<em>float</em><em>, </em><em>optional</em>) – <p>Evolutionary correction factor. Two models are used:</p>
+<ul>
+<li><p>If <cite>evo</cite> is specified, it applies the equation:
+<cite>evo_fact = 10 ** (-0.4 * evo * z_high)</cite></p></li>
+<li><p>If <cite>evo</cite> is None, it uses the Sobral et al. (2013) luminosity evolution model.</p></li>
+</ul>
+<p>Default is None.</p>
+</p></li>
+<li><p><strong>minimum_output_size</strong> (<em>int</em><em>, </em><em>optional</em>) – Minimum size (in pixels) for the output redshifted image. Default is None.</p></li>
+<li><p><strong>noconv</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, skips convolution with the transformation PSF. Default is False.</p></li>
+<li><p><strong>extend</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, keeps extended image dimensions after convolution. Default is False.</p></li>
+<li><p><strong>nonoise</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, skips adding noise to the output image. Default is False.</p></li>
+<li><p><strong>check_psf_FWHM</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, ensures the PSF at high redshift is broader than the low-redshift PSF.
+If the condition is not met, the simulation is not performed. Default is False.</p></li>
+<li><p><strong>border_clip</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of pixels to clip from the PSF borders before convolution. Default is 3.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>ndarray: The redshifted and convolved image.</p></li>
+<li><p>ndarray: The reconstructed PSF.</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>ValueError</strong> – If the input lists (images, background, or PSFs) have inconsistent lengths.
+    If the input images have inconsistent shapes.</p></li>
+<li><p><strong>ZeroDivisionError</strong> – If an input image contains non-positive values, leading to division by zero during error calculation.</p></li>
+<li><p><strong>RuntimeError</strong> – If an unexpected error occurs during the simulation process.</p></li>
+<li><p><strong>TypeError</strong> – If the PSF enlargement process fails during convolution.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>Filters specified in the <cite>lowz_info</cite> and <cite>highz_info</cite> dictionaries must be part of the catalog in the <cite>kcorrect</cite> package.
+Use the <cite>filter_list</cite> function from <cite>dopterian</cite> to view the available filters.</p></li>
+<li><p>If the parameter <cite>kc_obj</cite> is not provided, dopterian will automatically create the K-correction object.
+However, for simulations involving large sets of galaxies using the same input and output filters,
+it is recommended to provide the K-correction object as a parameter to save computation time.</p></li>
+<li><p>At least two input filters are required to apply the K-correction. If only one filter is provided, the correction is skipped.</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dopterianPlus.dopterian.ferengi_clip_edge">
+<span class="sig-prename descclassname"><span class="pre">dopterianPlus.dopterian.</span></span><span class="sig-name descname"><span class="pre">ferengi_clip_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auto_frac</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clip_also</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">norm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dopterianPlus/dopterian.html#ferengi_clip_edge"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dopterianPlus.dopterian.ferengi_clip_edge" title="Link to this definition"></a></dt>
+<dd><p>Dynamically clip the edges of an image based on standard deviation analysis.</p>
+<p>This function removes noisy or irrelevant border pixels by analyzing the
+standard deviation of pixel values in concentric rings centered on the image.
+Optionally, it can normalize the clipped image and apply the same clipping
+to a secondary array.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image</strong> (<em>ndarray</em>) – Input 2D image array.</p></li>
+<li><p><strong>auto_frac</strong> (<em>int</em><em>, </em><em>optional</em>) – Initial fraction to define the size of concentric rings for analysis.
+Default is 2.</p></li>
+<li><p><strong>clip_also</strong> (<em>ndarray</em><em>, </em><em>optional</em>) – Secondary array to apply the same clipping. Must have the same shape as <cite>image</cite>.
+Default is None.</p></li>
+<li><p><strong>norm</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, normalizes the clipped image and <cite>clip_also</cite> (if provided) by
+dividing each by its sum. Default is False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>int</em> – Number of pixels clipped from each side of the image.</p></li>
+<li><p><em>ndarray</em> – Clipped and optionally normalized image.</p></li>
+<li><p><em>ndarray, optional</em> – Clipped and optionally normalized secondary array (<cite>clip_also</cite>), if provided.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>The clipping is based on detecting significant deviations (≥10 standard deviations)
+in the pixel values of the concentric rings.</p></li>
+<li><p>If the number of significant deviations exceeds three times the rejected outliers,
+a warning is printed (“Large gap?”).</p></li>
+<li><p>The function assumes the input image is a 2D array.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – If <cite>clip_also</cite> does not have the same shape as <cite>image</cite>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dopterianPlus.dopterian.ferengi_convolve_plus_noise">
+<span class="sig-prename descclassname"><span class="pre">dopterianPlus.dopterian.</span></span><span class="sig-name descname"><span class="pre">ferengi_convolve_plus_noise</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sky</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exptime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nonoise</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">border_clip</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dopterianPlus/dopterian.html#ferengi_convolve_plus_noise"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dopterianPlus.dopterian.ferengi_convolve_plus_noise" title="Link to this definition"></a></dt>
+<dd><p>Convolve an image with a PSF and optionally add noise.</p>
+<p>This function convolves the input image with a Point Spread Function (PSF)
+in the Fourier domain. Optionally, it adds noise based on the provided
+sky background and exposure time.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image</strong> (<em>ndarray</em>) – Input 2D array representing the image.</p></li>
+<li><p><strong>psf</strong> (<em>ndarray</em>) – Point Spread Function (PSF) to convolve with the image.</p></li>
+<li><p><strong>sky</strong> (<em>ndarray</em>) – 2D array representing the sky background.</p></li>
+<li><p><strong>exptime</strong> (<em>float</em>) – Exposure time used to calculate noise levels.</p></li>
+<li><p><strong>nonoise</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, skips adding noise. Default is False.</p></li>
+<li><p><strong>border_clip</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of pixels to clip from the borders of the PSF. Default is None.</p></li>
+<li><p><strong>extend</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, keeps the extended image dimensions after convolution.
+If False, crops the image to its original size. Default is False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Convolved image, optionally with added noise.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ndarray</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the dimensions of the sky background are insufficient for the output image.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dopterianPlus.dopterian.ferengi_deconvolve">
+<span class="sig-prename descclassname"><span class="pre">dopterianPlus.dopterian.</span></span><span class="sig-name descname"><span class="pre">ferengi_deconvolve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wide</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">narrow</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dopterianPlus/dopterian.html#ferengi_deconvolve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dopterianPlus.dopterian.ferengi_deconvolve" title="Link to this definition"></a></dt>
+<dd><p>Compute the transformation PSF between two PSF images.</p>
+<p>This function calculates the transformation PSF that maps one PSF
+(narrow-field) to another (wide-field) in the Fourier domain. The result
+can be used to simulate or analyze how one optical system relates to another.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>wide</strong> (<em>ndarray</em>) – Wide-field PSF image.</p></li>
+<li><p><strong>narrow</strong> (<em>ndarray</em>) – Narrow-field PSF image. Must have the same shape as <cite>wide</cite>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Transformation PSF used to map the narrow-field PSF to the wide-field PSF.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ndarray</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>Both PSF images must be centered (odd pixel dimensions) and normalized.</p></li>
+<li><p>The computation involves zero-padding to ensure compatibility for Fourier transforms.</p></li>
+<li><p>The maximum array size for processing is capped at 2048x2048 pixels.</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dopterianPlus.dopterian.ferengi_downscale">
+<span class="sig-prename descclassname"><span class="pre">dopterianPlus.dopterian.</span></span><span class="sig-name descname"><span class="pre">ferengi_downscale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_low</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_low</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_high</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pix_low</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pix_hi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upscale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nofluxscale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dopterianPlus/dopterian.html#ferengi_downscale"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dopterianPlus.dopterian.ferengi_downscale" title="Link to this definition"></a></dt>
+<dd><p>Downscale an image to simulate a higher redshift.</p>
+<p>This function adjusts the size, flux, and luminosity of an input image
+to simulate how it would appear at a higher redshift. The scaling factors
+are calculated based on angular and luminosity distances, pixel scales,
+and optional evolutionary corrections.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image_low</strong> (<em>ndarray</em>) – Input 2D image at the lower redshift.</p></li>
+<li><p><strong>z_low</strong> (<em>float</em>) – Redshift of the input image.</p></li>
+<li><p><strong>z_high</strong> (<em>float</em>) – Target redshift for the simulation.</p></li>
+<li><p><strong>pix_low</strong> (<em>float</em>) – Pixel scale of the input image (arcsec/pixel) at the lower redshift.</p></li>
+<li><p><strong>pix_hi</strong> (<em>float</em>) – Pixel scale of the output image (arcsec/pixel) at the higher redshift.</p></li>
+<li><p><strong>upscale</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, inverts the scaling to simulate an image at a lower redshift.
+Default is False.</p></li>
+<li><p><strong>nofluxscale</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, skips flux scaling. Default is False.</p></li>
+<li><p><strong>evo</strong> (<em>float</em><em>, </em><em>optional</em>) – <p>Evolutionary correction factor to adjust for luminosity changes with redshift.
+If provided, the luminosity scaling is computed using:</p>
+<blockquote>
+<div><p><cite>evo_fact = 10 ** (-0.4 * evo * z_high)</cite>.</p>
+</div></blockquote>
+<p>If None, the Sobral et al. (2013) luminosity evolution model is used.</p>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The adjusted 2D image at the target redshift.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ndarray</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>If <cite>nofluxscale</cite> is True, the flux scaling is skipped, and the image
+retains its original flux.</p></li>
+<li><p>Uses the <cite>rebin2d</cite> function to scale the image dimensions while conserving flux.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – If the input image shape is invalid or scaling factors result in unrealistic dimensions.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dopterianPlus.dopterian.ferengi_make_psf_same">
+<span class="sig-prename descclassname"><span class="pre">dopterianPlus.dopterian.</span></span><span class="sig-name descname"><span class="pre">ferengi_make_psf_same</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">psf1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psf2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dopterianPlus/dopterian.html#ferengi_make_psf_same"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dopterianPlus.dopterian.ferengi_make_psf_same" title="Link to this definition"></a></dt>
+<dd><p>Adjust the sizes of two PSF images by zero-padding the smaller one.</p>
+<p>This function compares the sizes of two PSF (Point Spread Function) images
+and pads the smaller image with zeros to match the size of the larger image.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>psf1</strong> (<em>ndarray</em>) – First PSF image.</p></li>
+<li><p><strong>psf2</strong> (<em>ndarray</em>) – Second PSF image.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A tuple containing the two PSF images with matching sizes. The order
+corresponds to the input: <cite>(psf1, psf2)</cite> or <cite>(psf2, psf1)</cite> depending
+on which was smaller.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple of ndarray</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The padding is applied symmetrically, centering the smaller PSF within the
+larger PSF’s dimensions.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dopterianPlus.dopterian.ferengi_odd_n_square">
+<span class="sig-prename descclassname"><span class="pre">dopterianPlus.dopterian.</span></span><span class="sig-name descname"><span class="pre">ferengi_odd_n_square</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dopterianPlus/dopterian.html#ferengi_odd_n_square"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dopterianPlus.dopterian.ferengi_odd_n_square" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dopterianPlus.dopterian.ferengi_psf_centre">
+<span class="sig-prename descclassname"><span class="pre">dopterianPlus.dopterian.</span></span><span class="sig-name descname"><span class="pre">ferengi_psf_centre</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">psf</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dopterianPlus/dopterian.html#ferengi_psf_centre"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dopterianPlus.dopterian.ferengi_psf_centre" title="Link to this definition"></a></dt>
+<dd><p>Center the PSF image using its light barycenter.</p>
+<p>This function shifts the input PSF (Point Spread Function) image so that
+its barycenter aligns with the center of the image grid. If the PSF is not
+square, an error is raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>psf</strong> (<em>ndarray</em>) – 2D array representing the PSF image.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>PSF image with the barycenter aligned to the center of the grid.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ndarray</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>AssertionError</strong> – If the input PSF is not square.</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>If warnings occur during the Gaussian fit to the PSF, the barycenter is
+approximated as the geometric center of the grid.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dopterianPlus.dopterian.ferengi_transformation_psf">
+<span class="sig-prename descclassname"><span class="pre">dopterianPlus.dopterian.</span></span><span class="sig-name descname"><span class="pre">ferengi_transformation_psf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">psf_low</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psf_high</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_low</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_high</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pix_low</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pix_high</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">same_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dopterianPlus/dopterian.html#ferengi_transformation_psf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dopterianPlus.dopterian.ferengi_transformation_psf" title="Link to this definition"></a></dt>
+<dd><p>Compute the transformation PSF between two redshifts.</p>
+<p>This function calculates the transformation PSF that maps a low-redshift
+PSF (<cite>psf_low</cite>) to a high-redshift PSF (<cite>psf_high</cite>). It uses the angular
+distances, pixel scales, and redshift values to perform the necessary adjustments.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>psf_low</strong> (<em>ndarray</em>) – PSF at the lower redshift.</p></li>
+<li><p><strong>psf_high</strong> (<em>ndarray</em>) – PSF at the higher redshift.</p></li>
+<li><p><strong>z_low</strong> (<em>float</em>) – Redshift of the low-redshift PSF.</p></li>
+<li><p><strong>z_high</strong> (<em>float</em>) – Redshift of the high-redshift PSF.</p></li>
+<li><p><strong>pix_low</strong> (<em>float</em>) – Pixel scale of the low-redshift PSF (arcsec/pixel).</p></li>
+<li><p><strong>pix_high</strong> (<em>float</em>) – Pixel scale of the high-redshift PSF (arcsec/pixel).</p></li>
+<li><p><strong>same_size</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, ensures that the output PSFs have the same dimensions. Default is None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>The adjusted low-redshift PSF.</p></li>
+<li><p>The adjusted high-redshift PSF.</p></li>
+<li><p>The transformation PSF mapping <cite>psf_low</cite> to <cite>psf_high</cite>.</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple of ndarray</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>The function ensures that the PSFs are centered and normalized.</p></li>
+<li><p>If the output PSF dimensions are even, additional padding is applied to ensure odd dimensions.</p></li>
+<li><p>The transformation PSF is calculated using the <cite>ferengi_deconvolve</cite> function.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – If the PSF adjustment exceeds three times the original PSF size.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dopterianPlus.dopterian.filer_list">
+<span class="sig-prename descclassname"><span class="pre">dopterianPlus.dopterian.</span></span><span class="sig-name descname"><span class="pre">filer_list</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dopterianPlus/dopterian.html#filer_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dopterianPlus.dopterian.filer_list" title="Link to this definition"></a></dt>
+<dd><p>Retrieve the list of available filters in the kcorrect package.</p>
+<p>This function returns a list of all the filters available in the
+<cite>kcorrect</cite> package. These filters are used for K-correction calculations
+and are pre-defined within the package.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A list of filter names available in the <cite>kcorrect</cite> package.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dopterianPlus.dopterian.flam2fnu">
+<span class="sig-prename descclassname"><span class="pre">dopterianPlus.dopterian.</span></span><span class="sig-name descname"><span class="pre">flam2fnu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flam</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lam</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dopterianPlus/dopterian.html#flam2fnu"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dopterianPlus.dopterian.flam2fnu" title="Link to this definition"></a></dt>
+<dd><p>Convert flux density from wavelength space (flam) to frequency space (fnu).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>flam</strong> (<em>float</em><em> or </em><em>ndarray</em>) – Flux density in units of [erg s⁻¹ Å⁻¹ cm⁻²].</p></li>
+<li><p><strong>lam</strong> (<em>float</em><em> or </em><em>ndarray</em>) – Wavelength in angstroms.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Flux density in units of [erg s⁻¹ Hz⁻¹ cm⁻²].</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float or ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dopterianPlus.dopterian.fnu2flam">
+<span class="sig-prename descclassname"><span class="pre">dopterianPlus.dopterian.</span></span><span class="sig-name descname"><span class="pre">fnu2flam</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fnu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lam</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dopterianPlus/dopterian.html#fnu2flam"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dopterianPlus.dopterian.fnu2flam" title="Link to this definition"></a></dt>
+<dd><p>Convert flux density from frequency space (fnu) to wavelength space (flam).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fnu</strong> (<em>float</em><em> or </em><em>ndarray</em>) – Flux density in units of [erg s⁻¹ Hz⁻¹ cm⁻²].</p></li>
+<li><p><strong>lam</strong> (<em>float</em><em> or </em><em>ndarray</em>) – Wavelength in angstroms.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Flux density in units of [erg s⁻¹ Å⁻¹ cm⁻²].</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float or ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dopterianPlus.dopterian.fnu2maggies">
+<span class="sig-prename descclassname"><span class="pre">dopterianPlus.dopterian.</span></span><span class="sig-name descname"><span class="pre">fnu2maggies</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fnu</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dopterianPlus/dopterian.html#fnu2maggies"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dopterianPlus.dopterian.fnu2maggies" title="Link to this definition"></a></dt>
+<dd><p>Convert flux density from units of [erg s⁻¹ Hz⁻¹ cm⁻²] to maggies.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>fnu</strong> (<em>float</em><em> or </em><em>ndarray</em>) – Flux density in units of [erg s⁻¹ Hz⁻¹ cm⁻²].</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Flux density in maggies.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float or ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dopterianPlus.dopterian.kcorrect_maggies">
+<span class="sig-prename descclassname"><span class="pre">dopterianPlus.dopterian.</span></span><span class="sig-name descname"><span class="pre">kcorrect_maggies</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">im_err</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lowz_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">highz_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lambda_lo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lambda_hi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">err0_mag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">noflux</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kc_obj</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dopterianPlus/dopterian.html#kcorrect_maggies"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dopterianPlus.dopterian.kcorrect_maggies" title="Link to this definition"></a></dt>
+<dd><p>Perform K-correction on multi-band images.</p>
+<p>This function applies K-corrections to images observed in multiple bands,
+adjusting fluxes and errors to account for redshift differences and instrumental
+characteristics.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image</strong> (<em>list</em><em> of </em><em>ndarray</em>) – List of 2D images for each observed band.</p></li>
+<li><p><strong>im_err</strong> (<em>list</em><em> of </em><em>ndarray</em>) – List of 2D error maps corresponding to <cite>image</cite>.</p></li>
+<li><p><strong>lowz_info</strong> (<em>dict</em>) – Dictionary containing information about the low-redshift input (e.g., redshift,
+pixel scale, exposure time, zero-point magnitudes).</p></li>
+<li><p><strong>highz_info</strong> (<em>dict</em>) – Dictionary containing information about the high-redshift input.</p></li>
+<li><p><strong>lambda_lo</strong> (<em>array-like</em>) – Central wavelengths of the filters at low redshift.</p></li>
+<li><p><strong>lambda_hi</strong> (<em>array-like</em>) – Central wavelengths of the filters at high redshift.</p></li>
+<li><p><strong>err0_mag</strong> (<em>float</em><em>, </em><em>optional</em>) – Minimum magnitude error for all bands. Default is None.</p></li>
+<li><p><strong>evo</strong> (<em>float</em><em>, </em><em>optional</em>) – Evolutionary correction factor. Default is None.</p></li>
+<li><p><strong>noflux</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, skips flux scaling. Default is None.</p></li>
+<li><p><strong>kc_obj</strong> (<em>object</em><em>, </em><em>optional</em>) – Pre-initialized K-correction object. Default is None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>Corrected image(s) adjusted for redshift differences.</p></li>
+<li><p>Background image adjusted for redshift.</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dopterianPlus.dopterian.lam2nu">
+<span class="sig-prename descclassname"><span class="pre">dopterianPlus.dopterian.</span></span><span class="sig-name descname"><span class="pre">lam2nu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lam</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dopterianPlus/dopterian.html#lam2nu"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dopterianPlus.dopterian.lam2nu" title="Link to this definition"></a></dt>
+<dd><p>Convert wavelength from Angstrom to frequency in Hz.</p>
+<p>This function takes a wavelength value in angstroms and converts it to
+frequency in hertz (Hz) using the speed of light.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>lam</strong> (<em>float</em>) – Wavelength in angstroms.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Frequency in hertz (Hz).</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The speed of light (<cite>c</cite>) is assumed to be a constant defined as 299792458 m/s.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dopterianPlus.dopterian.lambda_eff">
+<span class="sig-prename descclassname"><span class="pre">dopterianPlus.dopterian.</span></span><span class="sig-name descname"><span class="pre">lambda_eff</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lam</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trans</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dopterianPlus/dopterian.html#lambda_eff"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dopterianPlus.dopterian.lambda_eff" title="Link to this definition"></a></dt>
+<dd><p>Calculate the effective wavelength of a filter.</p>
+<p>This function computes the mean wavelength of a filter by integrating
+the product of wavelength and transmission over the wavelength range.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lam</strong> (<em>ndarray</em>) – Wavelength array in angstroms.</p></li>
+<li><p><strong>trans</strong> (<em>ndarray</em>) – Transmission values corresponding to the wavelength array.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Effective wavelength in angstroms.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If all wavelengths in <cite>lam</cite> are zero.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dopterianPlus.dopterian.lum_evolution">
+<span class="sig-prename descclassname"><span class="pre">dopterianPlus.dopterian.</span></span><span class="sig-name descname"><span class="pre">lum_evolution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">zlow</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zhigh</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dopterianPlus/dopterian.html#lum_evolution"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dopterianPlus.dopterian.lum_evolution" title="Link to this definition"></a></dt>
+<dd><p>Calculate the luminosity evolution factor between two redshifts.</p>
+<p>This function computes the ratio of luminosities at two redshifts (<cite>zhigh</cite> and <cite>zlow</cite>)
+using the luminosity evolution model from Sobral et al. (2013).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>zlow</strong> (<em>float</em>) – Lower redshift value.</p></li>
+<li><p><strong>zhigh</strong> (<em>float</em>) – Higher redshift value.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The luminosity evolution factor.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dopterianPlus.dopterian.lup2maggies">
+<span class="sig-prename descclassname"><span class="pre">dopterianPlus.dopterian.</span></span><span class="sig-name descname"><span class="pre">lup2maggies</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lup</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filtro</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dopterianPlus/dopterian.html#lup2maggies"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dopterianPlus.dopterian.lup2maggies" title="Link to this definition"></a></dt>
+<dd><p>Convert Lupton magnitudes to flux density in maggies.</p>
+<p>This function calculates flux density in maggies from Lupton magnitudes
+for a given filter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lup</strong> (<em>float</em><em> or </em><em>ndarray</em>) – Lupton magnitudes.</p></li>
+<li><p><strong>filtro</strong> (<em>str</em>) – Filter name (e.g., ‘u’, ‘g’, ‘r’, ‘i’, ‘z’).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Flux density in maggies.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float or ndarray</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The conversion relies on a predefined mapping of filters to their corresponding
+scaling factor (<cite>magToLup</cite> dictionary).</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dopterianPlus.dopterian.maggies2cts">
+<span class="sig-prename descclassname"><span class="pre">dopterianPlus.dopterian.</span></span><span class="sig-name descname"><span class="pre">maggies2cts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">maggies</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exptime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zp</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dopterianPlus/dopterian.html#maggies2cts"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dopterianPlus.dopterian.maggies2cts" title="Link to this definition"></a></dt>
+<dd><p>Convert flux density in maggies to counts.</p>
+<p>This function calculates the total counts from flux density in maggies,
+exposure time, and zero-point magnitude.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>maggies</strong> (<em>float</em><em> or </em><em>ndarray</em>) – Flux density in maggies.</p></li>
+<li><p><strong>exptime</strong> (<em>float</em>) – Exposure time in seconds.</p></li>
+<li><p><strong>zp</strong> (<em>float</em>) – Zero-point magnitude.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Total counts.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float or ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dopterianPlus.dopterian.maggies2fnu">
+<span class="sig-prename descclassname"><span class="pre">dopterianPlus.dopterian.</span></span><span class="sig-name descname"><span class="pre">maggies2fnu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">maggies</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dopterianPlus/dopterian.html#maggies2fnu"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dopterianPlus.dopterian.maggies2fnu" title="Link to this definition"></a></dt>
+<dd><p>Convert flux density from maggies to units of [erg s⁻¹ Hz⁻¹ cm⁻²].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>maggies</strong> (<em>float</em><em> or </em><em>ndarray</em>) – Flux density in maggies.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Flux density in units of [erg s⁻¹ Hz⁻¹ cm⁻²].</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float or ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dopterianPlus.dopterian.maggies2lup">
+<span class="sig-prename descclassname"><span class="pre">dopterianPlus.dopterian.</span></span><span class="sig-name descname"><span class="pre">maggies2lup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">maggies</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filtro</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dopterianPlus/dopterian.html#maggies2lup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dopterianPlus.dopterian.maggies2lup" title="Link to this definition"></a></dt>
+<dd><p>Convert flux density in maggies to Lupton magnitudes.</p>
+<p>This function calculates Lupton magnitudes from flux density in maggies
+for a given filter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>maggies</strong> (<em>float</em><em> or </em><em>ndarray</em>) – Flux density in maggies.</p></li>
+<li><p><strong>filtro</strong> (<em>str</em>) – Filter name (e.g., ‘u’, ‘g’, ‘r’, ‘i’, ‘z’).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Lupton magnitudes.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float or ndarray</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The conversion relies on a predefined mapping of filters to their corresponding
+scaling factor (<cite>magToLup</cite> dictionary).</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dopterianPlus.dopterian.maggies2mags">
+<span class="sig-prename descclassname"><span class="pre">dopterianPlus.dopterian.</span></span><span class="sig-name descname"><span class="pre">maggies2mags</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">maggies</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dopterianPlus/dopterian.html#maggies2mags"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dopterianPlus.dopterian.maggies2mags" title="Link to this definition"></a></dt>
+<dd><p>Convert flux density from maggies to magnitudes.</p>
+<p>This function converts a flux density value given in maggies
+to the astronomical magnitude scale.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>maggies</strong> (<em>float</em><em> or </em><em>ndarray</em>) – Flux density in maggies.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Equivalent magnitude(s) in the astronomical scale.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float or ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dopterianPlus.dopterian.mags2cts">
+<span class="sig-prename descclassname"><span class="pre">dopterianPlus.dopterian.</span></span><span class="sig-name descname"><span class="pre">mags2cts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mags</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exptime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zp</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dopterianPlus/dopterian.html#mags2cts"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dopterianPlus.dopterian.mags2cts" title="Link to this definition"></a></dt>
+<dd><p>Convert magnitudes to counts.</p>
+<p>This function calculates the total counts from astronomical magnitudes,
+exposure time, and zero-point magnitude.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mags</strong> (<em>float</em><em> or </em><em>ndarray</em>) – Astronomical magnitudes.</p></li>
+<li><p><strong>exptime</strong> (<em>float</em>) – Exposure time in seconds.</p></li>
+<li><p><strong>zp</strong> (<em>float</em>) – Zero-point magnitude.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Total counts.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float or ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dopterianPlus.dopterian.mags2maggies">
+<span class="sig-prename descclassname"><span class="pre">dopterianPlus.dopterian.</span></span><span class="sig-name descname"><span class="pre">mags2maggies</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mags</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dopterianPlus/dopterian.html#mags2maggies"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dopterianPlus.dopterian.mags2maggies" title="Link to this definition"></a></dt>
+<dd><p>Convert magnitudes to flux density in maggies.</p>
+<p>This function converts an astronomical magnitude value
+to the equivalent flux density in maggies.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>mags</strong> (<em>float</em><em> or </em><em>ndarray</em>) – Astronomical magnitude(s).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Equivalent flux density in maggies.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float or ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dopterianPlus.dopterian.nu2lam">
+<span class="sig-prename descclassname"><span class="pre">dopterianPlus.dopterian.</span></span><span class="sig-name descname"><span class="pre">nu2lam</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nu</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dopterianPlus/dopterian.html#nu2lam"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dopterianPlus.dopterian.nu2lam" title="Link to this definition"></a></dt>
+<dd><p>Convert frequency from Hz to wavelength in Angstrom.</p>
+<p>This function takes a frequency value in hertz (Hz) and converts it to
+wavelength in angstroms using the speed of light.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>nu</strong> (<em>float</em>) – Frequency in hertz (Hz).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Wavelength in angstroms.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The speed of light (<cite>c</cite>) is assumed to be a constant defined as 299792458 m/s.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dopterianPlus.dopterian.predict_redshifted_FWHM">
+<span class="sig-prename descclassname"><span class="pre">dopterianPlus.dopterian.</span></span><span class="sig-name descname"><span class="pre">predict_redshifted_FWHM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a_low</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_low</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_high</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dopterianPlus/dopterian.html#predict_redshifted_FWHM"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dopterianPlus.dopterian.predict_redshifted_FWHM" title="Link to this definition"></a></dt>
+<dd><p>Predict the Full Width at Half Maximum (FWHM) at a higher redshift.</p>
+<p>This function calculates the predicted FWHM at a higher redshift based on
+the FWHM at a lower redshift and the corresponding luminosity distances.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a_low</strong> (<em>float</em>) – FWHM at the lower redshift.</p></li>
+<li><p><strong>z_low</strong> (<em>float</em>) – Lower redshift value.</p></li>
+<li><p><strong>z_high</strong> (<em>float</em>) – Higher redshift value.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Predicted FWHM at the higher redshift.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The calculation considers the luminosity distances and scaling factors
+for the redshifts.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dopterianPlus.dopterian.predict_redshifted_image_size">
+<span class="sig-prename descclassname"><span class="pre">dopterianPlus.dopterian.</span></span><span class="sig-name descname"><span class="pre">predict_redshifted_image_size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z_low</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_high</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_low</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pixscale_low_z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pixscale_high_z</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dopterianPlus/dopterian.html#predict_redshifted_image_size"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dopterianPlus.dopterian.predict_redshifted_image_size" title="Link to this definition"></a></dt>
+<dd><p>Predict the image size at a higher redshift.</p>
+<p>This function calculates the expected size of an image at a higher redshift
+based on its size at a lower redshift, accounting for luminosity distances,
+redshift scaling factors, and pixel scales.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>z_low</strong> (<em>float</em>) – Lower redshift value.</p></li>
+<li><p><strong>z_high</strong> (<em>float</em>) – Higher redshift value.</p></li>
+<li><p><strong>n_low</strong> (<em>int</em>) – Image size (number of pixels) at the lower redshift.</p></li>
+<li><p><strong>pixscale_low_z</strong> (<em>float</em>) – Pixel scale at the lower redshift.</p></li>
+<li><p><strong>pixscale_high_z</strong> (<em>float</em>) – Pixel scale at the higher redshift.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Predicted image size (number of pixels) at the higher redshift.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dopterianPlus.dopterian.random_indices">
+<span class="sig-prename descclassname"><span class="pre">dopterianPlus.dopterian.</span></span><span class="sig-name descname"><span class="pre">random_indices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indexs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dopterianPlus/dopterian.html#random_indices"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dopterianPlus.dopterian.random_indices" title="Link to this definition"></a></dt>
+<dd><p>Generate a random selection of unique indices.</p>
+<p>This function returns an array containing a specified number of unique
+indices randomly chosen from a given list or array.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>size</strong> (<em>int</em>) – Number of unique indices to select.</p></li>
+<li><p><strong>indexs</strong> (<em>array-like</em>) – Array or list of indices to sample from.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Array of randomly selected unique indices.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ndarray</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If <cite>size</cite> is larger than the number of available indices in <cite>indexs</cite>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dopterianPlus.dopterian.rebin2d">
+<span class="sig-prename descclassname"><span class="pre">dopterianPlus.dopterian.</span></span><span class="sig-name descname"><span class="pre">rebin2d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Nout</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Mout</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flux_scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dopterianPlus/dopterian.html#rebin2d"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dopterianPlus.dopterian.rebin2d" title="Link to this definition"></a></dt>
+<dd><p>Rebin a 2D image to a new shape with non-integer magnification.</p>
+<p>This function reduces or enlarges a 2D image to the specified output shape
+<cite>(Nout, Mout)</cite>, preserving flux or pixel values depending on the <cite>flux_scale</cite>
+parameter. The implementation is based on the FREBIN function from IDL Astrolib.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>img</strong> (<em>ndarray</em>) – Input 2D array representing the image.</p></li>
+<li><p><strong>Nout</strong> (<em>int</em>) – Number of rows in the output array.</p></li>
+<li><p><strong>Mout</strong> (<em>int</em>) – Number of columns in the output array.</p></li>
+<li><p><strong>flux_scale</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, scales pixel values to conserve total flux.
+If False, normalizes pixel values by the scaling factor. Default is False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Rebinned 2D array with shape <cite>(Nout, Mout)</cite>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ndarray</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the input image shape is incompatible with the specified output shape.</p>
+</dd>
+</dl>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<dl class="simple">
+<dt>RuntimeWarning</dt><dd><p>May be raised during calculations for empty slices or divisions by zero.</p>
+</dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dopterianPlus.dopterian.resistent_mean">
+<span class="sig-prename descclassname"><span class="pre">dopterianPlus.dopterian.</span></span><span class="sig-name descname"><span class="pre">resistent_mean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dopterianPlus/dopterian.html#resistent_mean"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dopterianPlus.dopterian.resistent_mean" title="Link to this definition"></a></dt>
+<dd><p>Compute the mean value of an array using a k-sigma clipping method.</p>
+<p>This function iteratively removes outliers beyond <cite>k</cite> standard deviations
+from the mean, recalculating the mean and standard deviation until no
+outliers remain.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<em>array-like</em>) – Input array of values.</p></li>
+<li><p><strong>k</strong> (<em>float</em>) – Number of standard deviations for clipping.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>float</em> – Clipped mean of the array.</p></li>
+<li><p><em>float</em> – Clipped standard deviation of the array.</p></li>
+<li><p><em>int</em> – Number of rejected outliers.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Values of zero in the input array are excluded from the calculations.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dopterianPlus.dopterian.ring_sky">
+<span class="sig-prename descclassname"><span class="pre">dopterianPlus.dopterian.</span></span><span class="sig-name descname"><span class="pre">ring_sky</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nap</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pa</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rstart</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dopterianPlus/dopterian.html#ring_sky"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dopterianPlus.dopterian.ring_sky" title="Link to this definition"></a></dt>
+<dd><p>Measure the flux around a position in elliptical rings.</p>
+<p>This function calculates the flux around a specified position <cite>(x, y)</cite>
+in elliptical rings with a given axis ratio, position angle, and
+aperture configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image</strong> (<em>ndarray</em>) – Input 2D image array.</p></li>
+<li><p><strong>width0</strong> (<em>float</em>) – Initial width of the rings in pixels.</p></li>
+<li><p><strong>nap</strong> (<em>int</em>) – Number of apertures. Must be greater than 3.</p></li>
+<li><p><strong>x</strong> (<em>float</em><em>, </em><em>optional</em>) – X-coordinate of the center. Defaults to the image center.</p></li>
+<li><p><strong>y</strong> (<em>float</em><em>, </em><em>optional</em>) – Y-coordinate of the center. Defaults to the image center.</p></li>
+<li><p><strong>q</strong> (<em>float</em><em>, </em><em>optional</em>) – Axis ratio of the ellipse (minor/major). Defaults to 1 (circular).</p></li>
+<li><p><strong>pa</strong> (<em>float</em><em>, </em><em>optional</em>) – Position angle of the ellipse in degrees. Defaults to 0.</p></li>
+<li><p><strong>rstart</strong> (<em>float</em><em>, </em><em>optional</em>) – Starting radius for the rings. Defaults to 5% of the smallest image dimension.</p></li>
+<li><p><strong>nw</strong> (<em>int</em><em>, </em><em>optional</em>) – If set, limits the number of apertures to <cite>nw</cite>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Measured sky flux in the elliptical rings.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If <cite>nap</cite> is less than or equal to 3.
+    If only one of <cite>x</cite> or <cite>y</cite> is specified.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dopterianPlus.dopterian.robust_linefit">
+<span class="sig-prename descclassname"><span class="pre">dopterianPlus.dopterian.</span></span><span class="sig-name descname"><span class="pre">robust_linefit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dopterianPlus/dopterian.html#robust_linefit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dopterianPlus.dopterian.robust_linefit" title="Link to this definition"></a></dt>
+<dd><p>Perform a robust linear fit.</p>
+<p>This function fits a robust linear model to the data using the
+HuberT norm to reduce the influence of outliers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>array-like</em>) – Independent variable.</p></li>
+<li><p><strong>y</strong> (<em>array-like</em>) – Dependent variable.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Parameters of the fitted linear model, where the first element
+is the intercept and the second element is the slope.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ndarray</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>This function uses the <cite>RLM</cite> (Robust Linear Model) from the <cite>statsmodels</cite>
+library with the HuberT norm.</p>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="usage_examples.html" class="btn btn-neutral float-left" title="Usage Examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="calc_FWHM.html" class="btn btn-neutral float-right" title="calc_FWHM Submodule" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Diego Maldonado, Pierluigi Cerulo, Ana Paulino-Afonso.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
