@@ -1716,7 +1716,12 @@ def kcorrect_maggies(image, im_err, lowz_info, highz_info, lambda_lo, lambda_hi,
         if kc_obj is None:
             print("Creating kcorrect object...")
             cos = FlatLambdaCDM(H0=cosmos.H0, Om0=cosmos.Omat, Ob0=cosmos.Obar)
-            kc = kcorrect.kcorrect.Kcorrect(responses=responses_lo, responses_out=[responses_hi], responses_map=[responses_lo[idx_bestfilt]], cosmo=cos)
+            kc = kcorrect.kcorrect.Kcorrect(    responses=responses_lo,
+                                                responses_out=[responses_hi],
+                                                responses_map=[responses_lo[idx_bestfilt]],
+                                                nredshift=2,
+                                                redshift_range=[lowz_info['redshift'],highz_info['redshift']],
+                                                cosmo=cos)
         else:
             kc = kc_obj
 
